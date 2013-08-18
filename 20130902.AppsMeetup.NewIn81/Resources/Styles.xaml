@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_20130902.AppsMeetup.NewIn81.Resources">
+
+    <Color x:Key="MMGreyColor">#FFE5E1D6</Color>
+    <Color x:Key="MMOrangeColor">#FFF15A15</Color>
+    <Color x:Key="MMBlueColor">#FF3C557D</Color>
+    <Color x:Key="MMAquaColor">#FF87C9C8</Color>
+
+    <SolidColorBrush x:Key="MMGreyBrush" Color="{StaticResource MMGreyColor}" />
+    <SolidColorBrush x:Key="MMOrangeBrush" Color="{StaticResource MMOrangeColor}" />
+    <SolidColorBrush x:Key="MMBlueBrush" Color="{StaticResource MMBlueColor}" />
+    <SolidColorBrush x:Key="MMAquaBrush" Color="{StaticResource MMAquaColor}" />
+
+    <!--MM Branding-->
+    <Style x:Key="MMHeaderTitle1Style" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="54"/>
+        <Setter Property="Foreground" Value="{StaticResource MMBlueBrush}"/>
+    </Style>
+    <Style x:Key="MMHeaderTitle2Style" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="54"/>
+        <Setter Property="Foreground" Value="{StaticResource MMOrangeBrush}"/>
+        <Setter Property="Margin" Value="12,0,0,0"/>
+    </Style>
+    
+    
+    <!--Main Page-->
+    <Style x:Key="MMSlideButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="{StaticResource MMGreyBrush}"/>
+        <Setter Property="Background" Value="{StaticResource MMBlueBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="0,0,12,12"/>
+    </Style>
+
+</ResourceDictionary>
