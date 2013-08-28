@@ -129,7 +129,7 @@ publish/
 *.pubxml
 
 # NuGet Packages Directory
-packages/*
+packages/
 !packages/repositories.config
 
 # Windows Azure Build Output
