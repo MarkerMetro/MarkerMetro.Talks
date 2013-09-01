@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>hubPage</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0.Preview/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0.Preview/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0.Preview/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/hub/hub.css" rel="stylesheet" />
+    <script src="/js/data.js"></script>
+    <script src="/pages/hub/hub.js"></script>
+</head>
+<body>
+    <div class="hubpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button data-win-control="WinJS.UI.BackButton"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <img src="/images/mm_50x50.jpg" />
+                <span class="pagetitle">Cat Hub</span>
+            </h1>
+
+            <div class="search"
+                data-win-control="WinJS.UI.SearchBox"
+                data-win-options="{
+                    focusOnKeyboardInput : true,
+                    placeholderText: 'start typing anywhere',
+                    onsuggestionsrequested : HubPage.searchBoxSuggestionsRequested }"></div>
+        </header>
+
+        <!--Images provided by thecatapi.com
+        Text by catipsum.com-->
+
+        <section class="hub" aria-label="Main content" role="main" data-win-control="WinJS.UI.Hub">
+
+            <!-- Hub has sections -->
+
+            <div class="hero" data-win-control="WinJS.UI.HubSection">
+                <!--Hero image section here (CSS)-->
+            </div>
+
+            <div class="section1" data-win-control="WinJS.UI.HubSection" data-win-options="{ isHeaderStatic: true }" data-win-res="{ winControl: {'header': 'Section1'} }">
+                <!--Throw in some HTML-->
+                <img src="/images/cats/section1.png" width="420" height="280" />
+                <div class="subtext win-type-x-large secondary-text">Attack feet sleep on keyboard</div>
+                <div class="win-type-small secondary-text">
+                    <span>Stretch need to chase tail and stare at ceiling but chase mice or intently sniff hand. Intently stare at the same spot hopped up on goofballs claw drapes and climb leg rub face on everything yet burrow under covers. Behind the couch lick butt. Destroy couch. Sleep on keyboard leave hair everywhere, destroy couch yet mark territory yet mark territory. Climb leg find something else more interesting run in circles run in circles, but missing until dinner time and attack feet yet under the bed. Behind the couch play time intently stare at the same spot so stand in front of the computer screen. Shake treat bag. Missing until dinner time mark territory but intently stare at the same spot sun bathe. Need to chase tail. Chase imaginary bugs.</span>
+                </div>
+            </div>
+
+            <div class="section2" data-win-control="WinJS.UI.HubSection" data-win-res="{ winControl: {'header': 'Section2'} }"
+                data-win-options="{ onheaderinvoked: HubPage.section2HeaderNavigate }">
+                <!--This one has a list in it and a selectable header-->
+                <div class="itemTemplate" data-win-control="WinJS.Binding.Template">
+                    <img src="#" data-win-bind="src: backgroundImage; alt: title" />
+                    <div class="item-text">
+                        <div class="win-type-medium" data-win-bind="textContent: title"></div>
+                        <div class="win-type-xx-small secondary-text" data-win-bind="textContent: subtitle"></div>
+                        <div class="win-type-small secondary-text" data-win-bind="textContent: description"></div>
+                    </div>
+                </div>
+                <div class="itemslist win-selectionstylefilled" data-win-control="WinJS.UI.ListView" data-win-options="{
+                        layout: {type: WinJS.UI.ListLayout},
+                        selectionMode: 'none',
+                        itemTemplate: select('.section2 .itemTemplate'),  
+                        itemDataSource: HubPage.section2DataSource,
+                        oniteminvoked: HubPage.section2ItemNavigate
+                    }">
+                </div>
+            </div>
+
+            <div class="section3" data-win-control="WinJS.UI.HubSection" data-win-options="{ isHeaderStatic: true }" data-win-res="{ winControl: {'header': 'Section3'} }">
+                <div class="top-image-row">
+                    <img src="/images/cats/cat5.jpg" />
+                </div>
+                <div class="sub-image-row">
+                    <img src="/images/cats/cat3.jpg" />
+                    <img src="/images/cats/cat1.jpg" />
+                    <img src="/images/cats/cat2.jpg" />
+                </div>
+                <div class="win-type-medium" data-win-res="{ textContent: 'DescriptionText' }"></div>
+                <div class="win-type-small secondary-text">
+                    <span data-win-res="{ textContent: 'Section3Description' }"></span>
+                    <span data-win-res="{ textContent: 'Section3Description' }"></span>
+                </div>
+            </div>
+
+            <div class="section4" data-win-control="WinJS.UI.HubSection" data-win-options="{ isHeaderStatic: true }" data-win-res="{ winControl: {'header': 'Section4'} }">
+                <div class="item-title win-type-medium" data-win-res="{ textContent: 'Section4ItemTitle' }"></div>
+                <div class="article-header win-type-x-large secondary-text" data-win-res="{ textContent: 'Section4Subtext' }"></div>
+                <div class="win-type-xx-small secondary-text" data-win-res="{ textContent: 'Section4ItemSubTitle' }"></div>
+                <div class="win-type-small secondary-text">
+                    <span data-win-res="{ textContent: 'Section4Description' }"></span>
+                    <span data-win-res="{ textContent: 'Section4Description' }"></span>
+                </div>
+                <input placeholder="DON'T TYPE HERE!" />
+            </div>
+
+            <div class="section5" data-win-control="WinJS.UI.HubSection" data-win-options="{ isHeaderStatic: true }" data-win-res="{ winControl: {'header': 'Section5'} }">
+                <div class="itemTemplate" data-win-control="WinJS.Binding.Template">
+                    <img src="#" data-win-bind="src: backgroundImage; alt: title" />
+                    <div class="win-type-medium" data-win-bind="textContent: title"></div>
+                    <div class="win-type-small secondary-text" data-win-bind="textContent: description"></div>
+                </div>
+                <div class="itemslist win-selectionstylefilled" data-win-control="WinJS.UI.ListView" data-win-options="{
+                        layout: {type: WinJS.UI.GridLayout},
+                        selectionMode: 'none',
+                        itemTemplate: select('.section5 .itemTemplate'),
+                        itemDataSource: HubPage.section5DataSource,
+                        oniteminvoked: HubPage.section5ItemNavigate
+                    }">
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

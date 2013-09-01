@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="550beb20-ae14-4245-a94f-2fe732ec3fe5" Version="1.0.0.0" Publisher="CN=Damian" />
+  <Properties>
+    <DisplayName>CatHubSample</DisplayName>
+    <PublisherDisplayName>Damian</PublisherDisplayName>
+    <Logo>images\mm_50x50.jpg</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <m2:VisualElements DisplayName="Cat Hub 8.1" Description="CatHubSample" ForegroundText="dark" BackgroundColor="#1D1D1D" Square150x150Logo="images\mm_150x150.jpg" Square30x30Logo="images\SmallLogo.png">
+        <m2:DefaultTile ShortName="Cat Hub 8.1" Square70x70Logo="images\mm_70x70.jpg" Square310x310Logo="images\mm_310x310.jpg" Wide310x150Logo="images\mm_310x150.jpg" DefaultSize="square150x150Logo">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+            <m2:ShowOn Tile="square310x310Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="images\splash.png" BackgroundColor="#1D1D1D" />
+        <m2:ApplicationView MinWidth="default" />
+      </m2:VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
