@@ -111,6 +111,7 @@
     <Compile Include="Services\ApplicationSettings.cs" />
     <Compile Include="Services\Channel9SearchService.cs" />
     <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Services\OfflineSearchService.cs" />
     <Compile Include="Services\SearchResult.cs" />
     <Compile Include="Views\DetailsPrintView.xaml.cs">
       <DependentUpon>DetailsPrintView.xaml</DependentUpon>
@@ -133,6 +134,10 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="packages.config" />
+    <Content Include="Resources\Data\3-339.jpg" />
+    <Content Include="Resources\Data\3-503_512.jpg" />
+    <Content Include="Resources\Data\IntroToContracts_mid.mp4" />
+    <Content Include="Resources\Data\SearchResults.json" />
     <None Include="TechEd_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

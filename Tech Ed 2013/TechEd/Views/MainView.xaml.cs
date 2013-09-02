@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,7 +21,7 @@ namespace TechEd.Views
 {
     public sealed partial class MainView
     {
-        private readonly ISearchService searchService = new Channel9SearchService();
+        private readonly ISearchService searchService = new OfflineSearchService();
         public MainView()
         {
             InitializeComponent();
@@ -38,12 +39,15 @@ namespace TechEd.Views
 
         private async void OnSuggestionsRequested(SearchBox sender, SearchBoxSuggestionsRequestedEventArgs args)
         {
-            if (args.QueryText.Length <= 3)
+            if (args.QueryText.Length < 5)
                 return;
 
             var deferral = args.Request.GetDeferral();
 
             var results = await searchService.SearchAsync(args.QueryText);
+
+            if (args.Request.IsCanceled)
+                return;
 
             foreach(var result in results.Take(5))
             {
