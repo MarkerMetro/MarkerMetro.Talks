@@ -24,7 +24,7 @@
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
         <m2:SplashScreen Image="images\splash.png" BackgroundColor="#1D1D1D" />
-        <m2:ApplicationView MinWidth="default" />
+        <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
       <Extensions>
         <Extension Category="windows.search" />

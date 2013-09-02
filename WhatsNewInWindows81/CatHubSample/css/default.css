@@ -46,3 +46,13 @@
         height: 100%;
         width: 100%;
     }
+
+@media screen and (max-width: 900px) {
+    .fragment header[role=banner]{
+        -ms-grid-columns: 37px 1fr;
+    }
+    .fragment header[role=banner] .titlearea {
+        -ms-grid-column: 2;
+    }
+    
+}

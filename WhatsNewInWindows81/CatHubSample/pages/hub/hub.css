@@ -180,8 +180,13 @@
 }
 
 
-@media all and (max-width: 760px) {
+@media screen and (max-width: 760px) {
     .hubpage .search {
+        display: none;
+    }
+}
+@media screen and (max-width: 900px) {
+    .hubpage .hub .hero{
         display: none;
     }
 }
