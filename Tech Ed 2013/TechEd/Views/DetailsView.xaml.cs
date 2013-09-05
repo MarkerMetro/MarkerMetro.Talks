@@ -68,7 +68,7 @@ namespace TechEd.Views
         private void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             args.Request.Data.Properties.Title = currentResult.Title;
-            args.Request.Data.Properties.Description = currentResult.Authors;
+            args.Request.Data.Properties.Description = "Link to the Channel9 website.";
 
             if (currentResult.HasSmallThumbnail)
             {
@@ -76,7 +76,7 @@ namespace TechEd.Views
             }
 
             args.Request.Data.SetWebLink(new Uri(currentResult.ItemLink));
-            args.Request.Data.SetHtmlFormat(currentResult.Body);
+            args.Request.Data.SetHtmlFormat(currentResult.Body);            
         }
 
         private async void OnSourceRequested(PlayToManager sender, PlayToSourceRequestedEventArgs args)

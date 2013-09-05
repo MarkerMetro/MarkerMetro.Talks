@@ -21,7 +21,7 @@ namespace TechEd.Views
 {
     public sealed partial class MainView
     {
-        private readonly ISearchService searchService = new OfflineSearchService();
+        private readonly ISearchService searchService = new Channel9SearchService();
         public MainView()
         {
             InitializeComponent();
@@ -57,7 +57,7 @@ namespace TechEd.Views
                     image = RandomAccessStreamReference.CreateFromUri(new Uri(result.SmallThumbnail, UriKind.Absolute));
                 else
                     image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///resources/images/mm_50x50.scale-100.jpg"));
-
+                
                 args.Request.SearchSuggestionCollection.AppendResultSuggestion(
                     result.Title,
                     result.Authors,
