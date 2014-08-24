@@ -1,0 +1,81 @@
+﻿<views:ViewBase
+    x:Class="XboxMediaRemote.App.Views.SearchResultsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:XboxMediaRemote.App.ViewModels"
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:views="using:XboxMediaRemote.App.Views"
+    mc:Ignorable="d"
+    RequestedTheme="Light" d:DataContext="{d:DesignInstance viewModels:SearchResultsViewModel, IsDesignTimeCreatable=False}">
+    
+    <Page.Resources>
+        <CollectionViewSource x:Name="ResultsViewSource" Source="{Binding Results}" IsSourceGrouped="True" ItemsPath="Items" />
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="40,0,0,15" VerticalAlignment="Bottom">
+            <Button x:Name="GoBack" Style="{StaticResource NavigationBackButtonSmallStyle}" Margin="0,0,20,0" VerticalAlignment="Bottom"/>
+            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Margin="0,0,0,5" FontWeight="Bold">
+                <Run x:Uid="SearchResultsHeader" />
+                <Run Text="{Binding Query, Converter={StaticResource StringFormat}, ConverterParameter='&quot;{0}&quot;'}" />
+            </TextBlock>
+        </StackPanel>
+
+        <Grid x:Name="ContentRoot" Grid.Row="2">
+            <SemanticZoom x:Name="ResultsZoom" ScrollViewer.HorizontalScrollMode="Disabled">
+                <SemanticZoom.ZoomedInView>
+                    <ListView ItemsSource="{Binding Source={StaticResource ResultsViewSource}}"
+                          micro:Message.Attach="[Event ItemClick] = [SelectItem($eventArgs)]" 
+                          Style="{StaticResource StorageZoomedInListViewStyle}"
+                          ItemTemplate="{StaticResource DefaultTemplate}">
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource GroupHeaderButtonStyle}" Content="{Binding Title}" Click="OnHeaderSelected" />
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <ListView Style="{StaticResource StorageZoomedOutListViewStyle}" ItemTemplate="{StaticResource StorageGroupTemplate}" />
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+
+            <TextBlock x:Uid="SearchResultsNone" Visibility="{Binding Results.Count, Converter={StaticResource InverseVisibility}}" Style="{StaticResource EmptyHeaderTextBlockStyle}" />
+        </Grid>
+        
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ContentStates">
+                <VisualState x:Name="ContentLoading">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressRing.IsActive)" Storyboard.TargetName="LoadingProgress">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ContentRoot">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ContentLoaded">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="LoadingProgress">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</views:ViewBase>

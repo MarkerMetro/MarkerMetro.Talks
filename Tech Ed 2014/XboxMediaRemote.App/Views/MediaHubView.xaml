@@ -1,0 +1,102 @@
+﻿<Page
+    x:Class="XboxMediaRemote.App.Views.MediaHubView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:XboxMediaRemote.Core.Controls"
+    xmlns:cm="using:Caliburn.Micro"
+    xmlns:views="using:XboxMediaRemote.App.Views"
+    mc:Ignorable="d"
+    RequestedTheme="Light">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:Sidebar x:Name="HubSidebar" Background="{StaticResource SidebarBackgroundBrush}" RequestedTheme="Dark">
+            <controls:Sidebar.ExpandedContentTemplate>
+                <DataTemplate>
+                    <Grid cm:Bind.Model="{Binding}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock x:Uid="MediaHubTitle" Grid.Column="1" Style="{StaticResource SubheaderTextBlockStyle}" Margin="30,0,0,10"
+                                       FontSize="20" FontWeight="Bold"/>
+                            
+                            <Button Style="{StaticResource ContentButton}" Grid.Column="2" Margin="0,15,30,0" Click="OnCollapseSidebar">
+                                <Image Source="/Resources/Images/Menu.png" Height="16" />    
+                            </Button>
+                            
+                        </Grid>
+
+                        <SearchBox x:Uid="MediaSearch" x:Name="MediaSearch" Grid.Row="1" Grid.Column="0" Margin="20,0,20,20" BorderThickness="0" Padding="15,10,15,5"
+                                   FocusOnKeyboardInput="True" SearchHistoryEnabled="False" cm:Message.Attach="SearchMedia(MediaSearch)"/>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <ListBox x:Name="Servers" Style="{StaticResource MenuListBoxStyle}" ItemContainerStyle="{StaticResource MenuListBoxItemStyle}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl cm:View.Model="{Binding}" cm:View.Context="ExpandedView" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </controls:Sidebar.ExpandedContentTemplate>
+            <controls:Sidebar.CollapsedContentTemplate>
+                <DataTemplate>
+                    <Grid cm:Bind.Model="{Binding}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{StaticResource ContentButton}" Click="OnExpandSidebar" HorizontalAlignment="Center"
+                                    Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                            <Image Source="/Resources/Images/Menu.png" Height="16" />
+                        </Button>
+
+                        <Button Grid.Row="1" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="26.667" HorizontalAlignment="Center" 
+                                Content="&#xE094;" Style="{StaticResource ContentButton}" Click="OnExpandSidebar" />
+
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <ListBox x:Name="Servers" Style="{StaticResource MenuListBoxStyle}" ItemContainerStyle="{StaticResource CollapsedMenuListBoxItemStyle}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl cm:View.Model="{Binding}" cm:View.Context="CollapsedView" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </controls:Sidebar.CollapsedContentTemplate>
+        </controls:Sidebar>
+
+        <Frame x:Name="RootFrame" Grid.Row="0" Grid.Column="1" cm:Message.Attach="RegisterFrame($source)" SourcePageType="views:WelcomeView" DataContext="{x:Null}" />
+        
+        <ContentControl x:Name="PlayTo" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    </Grid>
+</Page>
