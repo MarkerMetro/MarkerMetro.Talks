@@ -180,7 +180,9 @@ namespace XboxMediaRemote.App.ViewModels
 
         private Task<bool> CanPlayFullDurationAsyc()
         {
-            return Task.FromResult(!CurrentApp.LicenseInformation.IsTrial);
+            var productLicense = CurrentApp.LicenseInformation.ProductLicenses["UnlimitedLength"];
+
+            return Task.FromResult(productLicense.IsActive);
         }
 
         public void ShowPlayToUI()
