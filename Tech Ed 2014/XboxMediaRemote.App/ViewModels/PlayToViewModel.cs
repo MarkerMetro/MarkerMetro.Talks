@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Windows.Media.PlayTo;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -178,11 +179,18 @@ namespace XboxMediaRemote.App.ViewModels
             return duration;
         }
 
-        private Task<bool> CanPlayFullDurationAsyc()
+        private async Task<bool> CanPlayFullDurationAsyc()
         {
-            var productLicense = CurrentApp.LicenseInformation.ProductLicenses["UnlimitedLength"];
+            var switchOverDate = new DateTime(2014, 08, 01);
 
-            return Task.FromResult(productLicense.IsActive);
+            var productLicense = CurrentApp.LicenseInformation.ProductLicenses["UnlimitedLength"];
+            var recieptXml = await CurrentApp.GetAppReceiptAsync();
+
+            var recieptDoc = XDocument.Parse(recieptXml);
+
+            var purchaseDate = DateTime.Parse(recieptDoc.Root.Element("AppReceipt").Attribute("PurchaseDate").Value);
+
+            return purchaseDate < switchOverDate || productLicense.IsActive;
         }
 
         public void ShowPlayToUI()
