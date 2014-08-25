@@ -221,6 +221,7 @@
     <Content Include="Resources\Images\System\TileLogo.scale-100.png" />
     <Content Include="Resources\Images\System\TileLogo.scale-140.png" />
     <Content Include="Resources\Images\System\TileLogo.scale-180.png" />
+    <Content Include="Resources\Store\Simulator.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

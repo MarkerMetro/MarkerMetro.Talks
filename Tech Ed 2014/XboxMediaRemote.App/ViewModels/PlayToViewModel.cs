@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Media.PlayTo;
+using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Caliburn.Micro;
 using PropertyChanged;
 using XboxMediaRemote.App.Events;
 using XboxMediaRemote.App.Resources;
+
+#if DEBUG
+using CurrentApp = Windows.ApplicationModel.Store.CurrentAppSimulator;
+#endif
 
 namespace XboxMediaRemote.App.ViewModels
 {
@@ -23,9 +29,15 @@ namespace XboxMediaRemote.App.ViewModels
             this.eventAggregator = eventAggregator;
         }
 
-        protected override void OnInitialize()
+        protected override async void OnInitialize()
         {
             base.OnInitialize();
+
+#if DEBUG
+            var settings = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///resources/store/simulator.xml"));
+
+            await CurrentApp.ReloadSimulatorAsync(settings);
+#endif
 
             playToManager = PlayToManager.GetForCurrentView();
 
@@ -120,11 +132,55 @@ namespace XboxMediaRemote.App.ViewModels
             }
         }
 
-        public void Handle(MediaSelectedEventArgs message)
+        public async void Handle(MediaSelectedEventArgs message)
         {
+            var duration = await GetDurationAsync(message, message.StorageFile.File);
+            var canPlayFullDuration = await CanPlayFullDurationAsyc();
+
+            if (!canPlayFullDuration && duration > TimeSpan.FromSeconds(30))
+            {
+                var dialog = new MessageDialog("Cannot play media longer than thirty seconds in duration in trial mode.", "Trial Exceeded");
+
+                await dialog.ShowAsync();
+
+                await CurrentApp.RequestAppPurchaseAsync(includeReceipt: false);
+
+                return;
+            }
+
             CurrentFile = message.StorageFile;
 
             ShowPlayToUI();
+        }
+
+        private static async Task<TimeSpan> GetDurationAsync(MediaSelectedEventArgs message, StorageFile file)
+        {
+            var duration = TimeSpan.Zero;
+
+            switch (message.StorageFile.MediaType)
+            {
+                case MediaType.Video:
+
+                    var videoProperties = await file.Properties.GetVideoPropertiesAsync();
+
+                    duration = videoProperties.Duration;
+
+                    break;
+                case MediaType.Music:
+
+                    var musicProperties = await file.Properties.GetMusicPropertiesAsync();
+
+                    duration = musicProperties.Duration;
+
+                    break;
+            }
+
+            return duration;
+        }
+
+        private Task<bool> CanPlayFullDurationAsyc()
+        {
+            return Task.FromResult(!CurrentApp.LicenseInformation.IsTrial);
         }
 
         public void ShowPlayToUI()
