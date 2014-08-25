@@ -53,6 +53,8 @@ namespace XboxMediaRemote.App.ViewModels
 
         public void RegisterFrame(Frame frame)
         {
+            MarkedUp.AnalyticClient.RegisterNavigationFrame(frame);
+
             container.RegisterNavigationService(frame);
 
             navigationService = container.GetInstance<INavigationService>();

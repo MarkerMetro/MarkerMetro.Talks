@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.Media.PlayTo;
@@ -150,6 +151,12 @@ namespace XboxMediaRemote.App.ViewModels
             }
 
             CurrentFile = message.StorageFile;
+
+            MarkedUp.AnalyticClient.SessionEvent("MediaSelected", new Dictionary<string, string>
+            {
+                { "MediaType", message.StorageFile.MediaType.ToString() },
+                { "Duration", duration.ToString() }
+            });
 
             ShowPlayToUI();
         }

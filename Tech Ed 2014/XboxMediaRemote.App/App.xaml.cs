@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml;
 using Caliburn.Micro;
 using XboxMediaRemote.App.Resources;
 using XboxMediaRemote.App.Services;
@@ -27,6 +28,8 @@ namespace XboxMediaRemote.App
 
         protected override void Configure()
         {
+            MarkedUp.AnalyticClient.Initialize("5809dd47-4d72-4c1e-b125-c7272bfc149d");
+
             container = new WinRTContainer();
 
             container
@@ -47,6 +50,13 @@ namespace XboxMediaRemote.App
 
             settings.RegisterFlyoutCommand<AboutViewModel>(Strings.SettingsAbout);
             settings.RegisterFlyoutCommand<PrivacyPolicyViewModel>(Strings.SettingsPrivacyPolicy);
+        }
+
+        protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            base.OnUnhandledException(sender, e);
+
+            MarkedUp.AnalyticClient.LogLastChanceException(e);
         }
 
         protected override void BuildUp(object instance)
