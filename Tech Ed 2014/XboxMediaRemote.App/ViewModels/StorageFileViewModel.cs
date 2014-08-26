@@ -19,16 +19,7 @@ namespace XboxMediaRemote.App.ViewModels
         {
             this.file = file;
 
-            var contentType = file.ContentType;
-
-            if (contentType.StartsWith("image/"))
-                MediaType = MediaType.Picture;
-            else if (contentType.StartsWith("video/"))
-                MediaType = MediaType.Video;
-            else if (contentType.StartsWith("audio/"))
-                MediaType = MediaType.Music;
-            else
-                MediaType = MediaType.Unknown;
+            MediaType = DetermineMediaType(file.ContentType);
         }
 
         public StorageFile File
@@ -78,6 +69,20 @@ namespace XboxMediaRemote.App.ViewModels
                 Debug.WriteLine("Unable to load thumbnail for {0}", File.Name);
             }
             
+        }
+
+        public static MediaType DetermineMediaType(string contentType)
+        {
+            if (contentType.StartsWith("image/"))
+                return MediaType.Picture;
+            
+            if (contentType.StartsWith("video/"))
+                return MediaType.Video;
+            
+            if (contentType.StartsWith("audio/"))
+                return MediaType.Music;
+
+            return MediaType.Unknown;
         }
     }
 }

@@ -55,7 +55,10 @@ namespace XboxMediaRemote.App
             settings.RegisterFlyoutCommand<PrivacyPolicyViewModel>(Strings.SettingsPrivacyPolicy);
 
 
-            ApplicationData.Current.SetVersionAsync(0, r => { });
+            ApplicationData.Current.SetVersionAsync(0, r =>
+            {
+               
+            });
         }
 
         protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)

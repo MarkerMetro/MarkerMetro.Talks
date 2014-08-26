@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Newtonsoft.Json;
 using XboxMediaRemote.App.ViewModels;
+using XboxMediaRemote.Core.Extensions;
 
 namespace XboxMediaRemote.App.Services
 {
@@ -17,22 +20,29 @@ namespace XboxMediaRemote.App.Services
 
             var history = GetPlayHistory();
 
-            history.Add(fileViewModel.MediaType, item);
+            if (history.ContainsKey(fileViewModel.MediaType))
+            {
+                history[fileViewModel.MediaType].Add(item);
+            }
+            else
+            {
+                history[fileViewModel.MediaType] = new List<PlayHistoryItem> { item };
+            }
 
             SetPlayHistory(history);
         }
 
-        public Dictionary<MediaType, PlayHistoryItem> GetPlayHistory()
+        public Dictionary<MediaType, List<PlayHistoryItem>> GetPlayHistory()
         {
             var json = ApplicationData.Current.LocalSettings.Values["PlayHistory"] as string;
 
             if (String.IsNullOrEmpty(json))
-                return new Dictionary<MediaType, PlayHistoryItem>();
+                return new Dictionary<MediaType, List<PlayHistoryItem>>();
 
-            return JsonConvert.DeserializeObject<Dictionary<MediaType, PlayHistoryItem>>(json);
+            return JsonConvert.DeserializeObject<Dictionary<MediaType, List<PlayHistoryItem>>>(json);
         }
 
-        public void SetPlayHistory(Dictionary<MediaType, PlayHistoryItem> history)
+        public void SetPlayHistory(Dictionary<MediaType, List<PlayHistoryItem>> history)
         {
             var json = JsonConvert.SerializeObject(history);
 
