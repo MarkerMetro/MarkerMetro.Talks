@@ -55,9 +55,18 @@ namespace XboxMediaRemote.App
             settings.RegisterFlyoutCommand<PrivacyPolicyViewModel>(Strings.SettingsPrivacyPolicy);
 
 
-            ApplicationData.Current.SetVersionAsync(0, r =>
+            ApplicationData.Current.SetVersionAsync(1, async r =>
             {
-               
+                if (r.CurrentVersion == 0 && r.DesiredVersion == 1)
+                {
+                    var deferral = r.GetDeferral();
+
+                    var playHistory = container.GetInstance<IPlayHistoryService>();
+
+                    await playHistory.MigrateToDictionaryAsync();
+
+                    deferral.Complete();
+                }
             });
         }
 

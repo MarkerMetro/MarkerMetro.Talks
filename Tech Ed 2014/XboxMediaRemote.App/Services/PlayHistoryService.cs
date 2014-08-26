@@ -48,5 +48,29 @@ namespace XboxMediaRemote.App.Services
 
             ApplicationData.Current.LocalSettings.Values["PlayHistory"] = json;
         }
+
+        public async Task MigrateToDictionaryAsync()
+        {
+            var listJson = ApplicationData.Current.LocalSettings.Values["PlayHistory"] as string;
+
+            if (String.IsNullOrEmpty(listJson))
+                return;
+
+            var historyList = JsonConvert.DeserializeObject<List<PlayHistoryItem>>(listJson);
+
+            var files = await historyList.SelectAsync(async i => new
+            {
+                Item = i,
+                File = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(i.Token)
+            });
+
+            var historyDictionary = files
+                .GroupBy(f => StorageFileViewModel.DetermineMediaType(f.File.ContentType))
+                .ToDictionary(g => g.Key, g => g);
+
+            var dictionaryJson = JsonConvert.SerializeObject(historyDictionary);
+
+            ApplicationData.Current.LocalSettings.Values["PlayHistory"] = dictionaryJson;
+        }
     }
 }
