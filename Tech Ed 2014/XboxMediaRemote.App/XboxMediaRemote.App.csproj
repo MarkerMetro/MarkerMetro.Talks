@@ -123,6 +123,9 @@
     <Compile Include="Resources\TemplateSelectors\TypeIconTemplateSelector.cs" />
     <Compile Include="Services\IApplicationSettingsService.cs" />
     <Compile Include="Services\ApplicationSettingsService.cs" />
+    <Compile Include="Services\IPlayHistoryService.cs" />
+    <Compile Include="Services\PlayHistoryItem.cs" />
+    <Compile Include="Services\PlayHistoryService.cs" />
     <Compile Include="ViewModels\AlphaNumericGroups.cs" />
     <Compile Include="ViewModels\BrowseFolderViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
@@ -247,6 +250,9 @@
     </Reference>
     <Reference Include="Microsoft.Xaml.Interactivity">
       <HintPath>..\packages\Caliburn.Micro.2.0.0-alpha2\lib\win81\Microsoft.Xaml.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.42.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>

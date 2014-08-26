@@ -12,7 +12,7 @@ using Caliburn.Micro;
 using PropertyChanged;
 using XboxMediaRemote.App.Events;
 using XboxMediaRemote.App.Resources;
-
+using XboxMediaRemote.App.Services;
 #if DEBUG
 using CurrentApp = Windows.ApplicationModel.Store.CurrentAppSimulator;
 #endif
@@ -23,12 +23,14 @@ namespace XboxMediaRemote.App.ViewModels
     public class PlayToViewModel : ViewModelBase, IHandle<MediaSelectedEventArgs>
     {
         private readonly IEventAggregator eventAggregator;
+        private readonly IPlayHistoryService playHistoryService;
         private PlayToManager playToManager;
         private PlayToConnection currentConnection;
 
-        public PlayToViewModel(IEventAggregator eventAggregator)
+        public PlayToViewModel(IEventAggregator eventAggregator, IPlayHistoryService playHistoryService)
         {
             this.eventAggregator = eventAggregator;
+            this.playHistoryService = playHistoryService;
         }
 
         protected override async void OnInitialize()
@@ -151,6 +153,8 @@ namespace XboxMediaRemote.App.ViewModels
             }
 
             CurrentFile = message.StorageFile;
+
+            playHistoryService.Add(message.StorageFile);
 
             MarkedUp.AnalyticClient.SessionEvent("MediaSelected", new Dictionary<string, string>
             {

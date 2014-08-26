@@ -4,6 +4,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
 using PropertyChanged;
+using XboxMediaRemote.App.Services;
 
 namespace XboxMediaRemote.App.ViewModels
 {
@@ -13,13 +14,13 @@ namespace XboxMediaRemote.App.ViewModels
         private readonly WinRTContainer container;
         private INavigationService navigationService;
 
-        public MediaHubViewModel(WinRTContainer container, IEventAggregator eventAggregator)
+        public MediaHubViewModel(WinRTContainer container, IEventAggregator eventAggregator, IPlayHistoryService playHistoryService)
         {
             this.container = container;
 
             Servers = new BindableCollection<MediaServerViewModel>();
 
-            PlayTo = new PlayToViewModel(eventAggregator);
+            PlayTo = new PlayToViewModel(eventAggregator, playHistoryService);
 
             PlayTo.ConductWith(this);
         }
@@ -42,6 +43,7 @@ namespace XboxMediaRemote.App.ViewModels
 
             Servers.AddRange(localViewModels);
             Servers.AddRange(serverViewModels);
+            Servers.Add(new MediaServerViewModel(null, true, MediaType.Unknown));
         }
 
         public void SearchMedia(string query)

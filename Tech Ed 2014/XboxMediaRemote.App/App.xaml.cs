@@ -37,6 +37,7 @@ namespace XboxMediaRemote.App
 
             container
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IPlayHistoryService, PlayHistoryService>()
                 .Singleton<IApplicationSettingsService, ApplicationSettingsService>();
 
             container
