@@ -7,7 +7,7 @@ namespace XboxMediaRemote.App.Services
     public interface IPlayHistoryService
     {
         void Add(StorageFileViewModel fileViewModel);
-        List<PlayHistoryItem> GetPlayHistory();
-        void SetPlayHistory(List<PlayHistoryItem> history);
+        Dictionary<MediaType, PlayHistoryItem> GetPlayHistory();
+        void SetPlayHistory(Dictionary<MediaType, PlayHistoryItem> history);
     }
 }

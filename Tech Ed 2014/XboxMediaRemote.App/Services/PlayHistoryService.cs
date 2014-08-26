@@ -17,22 +17,22 @@ namespace XboxMediaRemote.App.Services
 
             var history = GetPlayHistory();
 
-            history.Add(item);
+            history.Add(fileViewModel.MediaType, item);
 
             SetPlayHistory(history);
         }
 
-        public List<PlayHistoryItem> GetPlayHistory()
+        public Dictionary<MediaType, PlayHistoryItem> GetPlayHistory()
         {
             var json = ApplicationData.Current.LocalSettings.Values["PlayHistory"] as string;
 
             if (String.IsNullOrEmpty(json))
-                return new List<PlayHistoryItem>();
+                return new Dictionary<MediaType, PlayHistoryItem>();
 
-            return JsonConvert.DeserializeObject<List<PlayHistoryItem>>(json);
+            return JsonConvert.DeserializeObject<Dictionary<MediaType, PlayHistoryItem>>(json);
         }
 
-        public void SetPlayHistory(List<PlayHistoryItem> history)
+        public void SetPlayHistory(Dictionary<MediaType, PlayHistoryItem> history)
         {
             var json = JsonConvert.SerializeObject(history);
 
