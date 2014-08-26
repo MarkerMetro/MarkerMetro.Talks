@@ -14,6 +14,12 @@ namespace XboxMediaRemote.App.Services
             var token = StorageApplicationPermissions.FutureAccessList.Add(fileViewModel.File);
 
             var item = new PlayHistoryItem { Token = token };
+
+            var history = GetPlayHistory();
+
+            history.Add(item);
+
+            SetPlayHistory(history);
         }
 
         public List<PlayHistoryItem> GetPlayHistory()

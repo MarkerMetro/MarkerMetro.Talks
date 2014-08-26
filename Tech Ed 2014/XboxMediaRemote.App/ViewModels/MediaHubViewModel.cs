@@ -43,7 +43,6 @@ namespace XboxMediaRemote.App.ViewModels
 
             Servers.AddRange(localViewModels);
             Servers.AddRange(serverViewModels);
-            Servers.Add(new MediaServerViewModel(null, true, MediaType.Unknown));
         }
 
         public void SearchMedia(string query)
