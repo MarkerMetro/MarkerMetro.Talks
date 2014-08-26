@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Caliburn.Micro;
 using XboxMediaRemote.App.Resources;
@@ -51,6 +52,9 @@ namespace XboxMediaRemote.App
 
             settings.RegisterFlyoutCommand<AboutViewModel>(Strings.SettingsAbout);
             settings.RegisterFlyoutCommand<PrivacyPolicyViewModel>(Strings.SettingsPrivacyPolicy);
+
+
+            ApplicationData.Current.SetVersionAsync(0, r => { });
         }
 
         protected override void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
