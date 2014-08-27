@@ -66,7 +66,7 @@ namespace XboxMediaRemote.App.Services
 
             var historyDictionary = files
                 .GroupBy(f => StorageFileViewModel.DetermineMediaType(f.File.ContentType))
-                .ToDictionary(g => g.Key, g => g);
+                .ToDictionary(g => g.Key, g => g.Select(i => i.Item).ToList());
 
             var dictionaryJson = JsonConvert.SerializeObject(historyDictionary);
 
