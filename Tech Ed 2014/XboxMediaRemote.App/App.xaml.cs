@@ -46,7 +46,8 @@ namespace XboxMediaRemote.App
                 .PerRequest<BrowseFolderViewModel>()
                 .PerRequest<SearchResultsViewModel>()
                 .PerRequest<AboutViewModel>()
-                .PerRequest<PrivacyPolicyViewModel>();
+                .PerRequest<PrivacyPolicyViewModel>()
+                .PerRequest<PlayHistoryViewModel>();
 
             var settings = container.RegisterSettingsService();
 

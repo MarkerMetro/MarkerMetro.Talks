@@ -213,4 +213,13 @@
   <data name="MediaSortType" xml:space="preserve">
     <value>By file type</value>
   </data>
+  <data name="PlayHistoryHeader.Text" xml:space="preserve">
+    <value>Play History</value>
+  </data>
+  <data name="PlayHistoryNone.Text" xml:space="preserve">
+    <value>No files in your play history</value>
+  </data>
+  <data name="MediaHubHistory.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
 </root>

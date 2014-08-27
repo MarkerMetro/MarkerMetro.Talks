@@ -135,6 +135,7 @@
     <Compile Include="ViewModels\MediaSortViewModel.cs" />
     <Compile Include="ViewModels\MediaType.cs" />
     <Compile Include="ViewModels\PageViewModelBase.cs" />
+    <Compile Include="ViewModels\PlayHistoryViewModel.cs" />
     <Compile Include="ViewModels\PlayToViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
     <Compile Include="ViewModels\Settings\AboutViewModel.cs" />
@@ -159,6 +160,9 @@
     </Compile>
     <Compile Include="Views\MediaServer\ExpandedView.xaml.cs">
       <DependentUpon>ExpandedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayHistoryView.xaml.cs">
+      <DependentUpon>PlayHistoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlayToView.xaml.cs">
       <DependentUpon>PlayToView.xaml</DependentUpon>
@@ -317,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MediaServer\ExpandedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

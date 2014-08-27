@@ -8,5 +8,10 @@ namespace XboxMediaRemote.App.Services
         {
             get; set;
         }
+
+        public DateTime PlayedOn
+        {
+            get; set;
+        }
     }
 }

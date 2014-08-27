@@ -69,6 +69,9 @@ namespace XboxMediaRemote.App.ViewModels
 
         public void OnSelectedServerChanged()
         {
+            if (SelectedServer == null)
+                return;
+
             navigationService.NavigateToViewModel<BrowseFolderViewModel>(SelectedServer.Folder);
         }
 
@@ -81,6 +84,14 @@ namespace XboxMediaRemote.App.ViewModels
         public PlayToViewModel PlayTo
         {
             get; private set;
+        }
+
+        public void ViewPlayHistory()
+        {
+            SelectedServer = null;
+
+            navigationService.UriFor<PlayHistoryViewModel>()
+                .Navigate();
         }
     }
 }
