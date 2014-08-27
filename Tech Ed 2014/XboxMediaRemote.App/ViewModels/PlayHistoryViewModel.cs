@@ -33,7 +33,9 @@ namespace XboxMediaRemote.App.ViewModels
             {
                 var history = playHistoryService.GetPlayHistory();
 
-                var groups = await history.GroupBy(i => i.PlayedOn.Date)
+                var groups = await history
+                    .SelectMany(k => k.Value)
+                    .GroupBy(i => i.PlayedOn.Date)
                     .SelectAsync(async g => 
                         new StorageItemGroupViewModel(g.Key.ToString("D"), 
                             await g.SelectAsync(async f => new StorageFileViewModel(
