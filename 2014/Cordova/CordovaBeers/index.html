@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>BlankCordovaApp1</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- BlankCordovaApp1 references -->
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body ng-app="TechEd">
+    <section ng-controller="BeerCtrl">
+        <header class="header">
+            <h1>Untappd checkins</h1>
+        </header>
+        <section>
+            <div class="beer-list">
+                <div class="beer-list-item" ng-repeat="checkin in checkins">
+
+                    <div class="beer-list-user">
+                        <img src="{{ checkin.user.user_avatar }}" />
+                        <h2>{{ checkin.user.user_name }}</h2>
+                        <h3>{{ checkin.venue.venue_name }}</h3>
+                    </div>
+                    <div class="beer-list-beer">
+                        <img src="{{ checkin.beer.beer_label }}" />
+                        <h2>{{ checkin.beer.beer_name }}</h2>
+                        <h3>by {{ checkin.brewery.brewery_name }}</h3>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <!-- AngularJS references -->
+    <script src="scripts/frameworks/angular.min.js"></script>
+    <script src="scripts/frameworks/angular-resource.min.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/controllers.js"></script>
+</body>
+</html>
