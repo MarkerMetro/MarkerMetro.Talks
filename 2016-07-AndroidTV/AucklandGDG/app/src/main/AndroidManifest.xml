@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.markermetro.aucklandgdg" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.software.leanback" android:required="true" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <application
+        android:name=".AndroidApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Leanback" >
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/app_icon_your_company"
+            android:icon="@drawable/app_icon_your_company"
+            android:label="@string/app_name"
+            android:logo="@drawable/app_icon_your_company"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".RecommendationService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".page.PageAndListRowActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback.CustomTitle"/>
+        <activity
+            android:name=".wizard.WizardExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackWizard"/>
+        <activity
+            android:name=".settings.SettingsExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackPreferences"/>
+        <activity
+            android:name=".dialog.DialogExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackDialog"/>
+        <activity
+            android:name=".details.DetailViewExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackDetails"/>
+        <activity
+            android:name=".cards.CardExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackBrowse"/>
+        <activity
+            android:name=".grid.GridExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.LeanbackVerticalGrid"/>
+        <activity
+            android:name=".media.VideoExampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback"/>
+        <activity
+            android:name=".views.WelcomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback"/>
+        <activity
+            android:name=".views.AndroidTVActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback"/>
+        <activity
+            android:name=".views.ATVHardwareActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback"/>
+        <activity
+            android:name=".views.EndActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Example.Leanback"/>
+    </application>
+
+</manifest>

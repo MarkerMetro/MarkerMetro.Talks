@@ -1,0 +1,44 @@
+<resources>
+    <color name="background_gradient_start">#FFFFFF</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="fastlane_background">#3b495d</color>
+    <color name="search_color">#F05B23</color>
+    <color name="search_icon_color">#222222</color>
+    <color name="accent">#80D3FB</color>
+    <color name="settings_background">#00695C</color>
+    <color name="selected_background">#424242</color>
+
+    <color name="default_background">#3d3d3d</color>
+
+    <color name="default_card_background_color">#263238</color>
+    <color name="default_card_footer_background_color">#37474F</color>
+    <color name="selected_card_footer_background_color">#F0F</color>
+
+    <color name="card_primary_text">#EEEEEE</color>
+    <color name="card_secondary_text">#99EEEEEE</color>
+
+    <color name="loading_error_card_background">#86c739</color>
+
+    <color name="card_examples_background">#222222</color>
+
+    <color name="detail_view_actionbar_background">#04549D</color>
+    <color name="detail_view_background">#0374bf</color>
+    <color name="detail_view_related_background">#022A4E</color>
+
+    <color name="app_guidedstep_actions_background">#C03800</color>
+    <color name="app_guidedstep_subactions_background">#C03800</color>
+    <color name="app_guidedstep_dialog_actions_background">#263238</color>
+    <color name="settings_card_background">#0277BD</color>
+    <color name="settings_card_background_focussed">#01579B</color>
+    <color name="default_search_icon_color">#FFFFFFFF</color>
+    <color name="title_background_color">#FF777777</color>
+
+    <color name="link_color">#5AB1E2</color>
+
+
+    <color name="mm_bg">#232323</color>
+    <color name="mm_purple">#3b495d</color>
+    <color name="mm_orange">#F05B23</color>
+    <color name="mm_aqua">#5DBFC5</color>
+    <color name="mm_grey">#E6E2D8</color>
+</resources>

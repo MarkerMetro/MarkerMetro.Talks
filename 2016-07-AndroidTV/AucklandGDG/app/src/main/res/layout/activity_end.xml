@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/mm_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resources"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Title.Text"
+            android:layout_marginTop="30dp"
+            android:textSize="32sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Damian Karzon"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\@dkarzon"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="This code"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/dkarzon/Talks"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Android TV Design Guide &amp; Training"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="http://www.google.com/design/spec-tv/android-tv/introduction.html"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"/>
+
+
+        <TextView
+            style="@style/Widget.Leanback.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://developer.android.com/training/tv/index.html"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"
+            android:id="@+id/textView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Leanback Samples"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/googlesamples/leanback-showcase"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/googlesamples/androidtv-Leanback"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Bring your Android app to Android TV"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://www.youtube.com/watch?v=qv-e1sV3gos"
+            android:layout_gravity="center"
+            style="@style/Widget.Leanback.Header"
+            android:textSize="18sp"
+            android:textColor="@color/link_color"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mm_purple"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mm_aqua"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mm_grey"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mm_orange"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
